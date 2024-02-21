@@ -7,15 +7,19 @@ const authMiddleware = require("./middleWare/authMiddleware")
 const userRoutes = require("./routes/userRoute")
 app.use(express.json())
 app.use("/api/users",userRoutes)
-const questionRoutes = require("./routes/questionRoute")
-// Question
-app.use("/api/questions",authMiddleware,questionRoutes)
 
+// Question
+const questionRoutes = require("./routes/questionRoute")
+app.use("/api/questions",authMiddleware,questionRoutes)
+// answer
+const answerRoutes = require("./routes/answerRoute")
+app.use("/api/answers",authMiddleware,answerRoutes)
+app.use("/api/answer",authMiddleware,answerRoutes)
 
 // db connection
 async function start() {
     try {
-       const result = await dbConnection.execute("select 'test'")
+    //    const result = await dbConnection.execute("select 'test'")
     //    console.log(result)
         app.listen(port)
         console.log("connection established with db")

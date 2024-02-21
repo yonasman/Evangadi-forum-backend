@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 async function register(req,res) {
     const {username, firstname, lastname,email, password} = req.body
     if (!username || !firstname || !lastname || !email || !password) {
-        res.status(StatusCodes.BAD_REQUEST).json({msg:"Please provide all the required info"})
+        return res.status(StatusCodes.BAD_REQUEST).json({msg:"Please provide all the required info"})
     }
     try {
         const [user] = await dbConnection.query("SELECT username,email from users WHERE username = ? or email = ?",[username,email])
@@ -31,7 +31,7 @@ async function login(req,res) {
     const {email,password} = req.body
 
     if(!email || !password) {
-        return res.status(StatusCodes.BAD_REQUEST).json({msg:"Please enter all required fields"})
+        return res.status(StatusCodes.BAD_REQUEST).json({msg:"Please insert all required fields"})
     }
     try {
         const [user] = await dbConnection.query("SELECT username,userid,password FROM users WHERE email = ? ",[email])

@@ -12,6 +12,7 @@ async function authMiddleware(req,res,next) {
     try {
         const {username,userid} = jwt.verify(token,"secret")
         req.user = {username,userid}
+        // console.log(req.user)
         next()
     } catch (error) {
         return res.status(StatusCodes.UNAUTHORIZED).json({msg:"Authentication failed"})
