@@ -14,7 +14,7 @@ app.use("/api/questions",authMiddleware,questionRoutes)
 // answer
 const answerRoutes = require("./routes/answerRoute")
 app.use("/api/answers",authMiddleware,answerRoutes)
-app.use("/api/answer",authMiddleware,answerRoutes)
+
 
 // db connection
 async function start() {
